@@ -16,7 +16,8 @@ const backgroundColor = theme('mode', {
 
 const Styled = createGlobalStyle`
 * {
-  font-family: ${basicStyles.font.basic.family}
+  font-family: ${basicStyles.font.basic.family};
+  box-sizing: border-box;
 }
 
 body {
