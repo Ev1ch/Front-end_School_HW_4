@@ -13,8 +13,16 @@ const hoverBackgroundColor = theme('mode', {
   light: lightTheme.colors.accent,
 });
 
-const StyledCircle = styled.div`
+const StyledSwitch = styled.div`
+  border: 1px solid ${backgroundColor};
+  border-radius: ${basicStyles.radius}px;
+  height: 30px;
+  width: 50px;
+  position: relative;
   cursor: pointer;
+`;
+
+const StyledCircle = styled.div`
   border-radius: 50%;
   width: 28px;
   height: 28px;
@@ -36,14 +44,6 @@ const StyledCircle = styled.div`
   &:hover {
     background-color: ${hoverBackgroundColor};
   }
-`;
-
-const StyledSwitch = styled.div`
-  border: 1px solid ${backgroundColor};
-  border-radius: ${basicStyles.radius}px;
-  height: 30px;
-  width: 50px;
-  position: relative;
 `;
 
 const Switch = ({ className, onChange }) => {
