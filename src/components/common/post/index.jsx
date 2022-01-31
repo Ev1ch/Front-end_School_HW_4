@@ -10,13 +10,13 @@ const StyledText = styled.div`
 
 const StyledPost = styled.article``;
 
-const Post = ({ post: { title, subtitle, text: initialText }, className }) => {
+const Post = ({ post: { title, body: initialText }, className }) => {
   const text = getCutText(initialText, 200);
 
   return (
     <StyledPost className={className}>
       <Title text={title} />
-      <Subtitle text={subtitle} />
+      <Subtitle text={title} />
       <StyledText>
         <Paragraph text={`${text}...`} />
       </StyledText>
