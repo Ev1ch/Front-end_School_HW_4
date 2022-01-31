@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Paragraph, Subtitle, Title } from 'components/basic';
 import { getCutText } from 'helpers';
+import { basicStyles } from 'styles';
 
-const StyledText = styled.div``;
+const StyledText = styled.div`
+  margin-bottom: ${basicStyles.gutter}px;
+`;
+
 const StyledPost = styled.article``;
 
 const Post = ({ post: { title, subtitle, text: initialText }, className }) => {
