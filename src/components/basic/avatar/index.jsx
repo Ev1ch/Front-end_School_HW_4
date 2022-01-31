@@ -14,6 +14,7 @@ const StyledAvatar = styled.img`
   border-radius: 50%;
   display: block;
   background-color: ${backgroundColor};
+  overflow: hidden;
 `;
 
 const Avatar = ({ image, className }) => {
