@@ -6,6 +6,7 @@ import { basicStyles } from 'styles';
 
 const StyledText = styled.div`
   margin-bottom: ${basicStyles.gutter}px;
+  text-align: justify;
 `;
 
 const StyledPost = styled.article``;
