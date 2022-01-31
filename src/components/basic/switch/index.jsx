@@ -16,7 +16,7 @@ const hoverBackgroundColor = theme('mode', {
 const StyledSwitch = styled.div`
   border: 1px solid ${backgroundColor};
   border-radius: ${basicStyles.radius}px;
-  height: 30px;
+  height: 31px;
   width: 50px;
   position: relative;
   cursor: pointer;
@@ -28,17 +28,16 @@ const StyledCircle = styled.div`
   height: 28px;
   background-color: ${backgroundColor};
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0.5px;
   transition: background-color ${basicStyles.time}s;
 
   ${(props) =>
     props.active
       ? css`
-          right: 2px;
+          right: 1px;
         `
       : css`
-          left: 2px;
+          left: 1px;
         `}
 
   &:hover {
