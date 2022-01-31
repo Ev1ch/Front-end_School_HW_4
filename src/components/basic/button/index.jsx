@@ -14,6 +14,7 @@ const contrastColor = theme('mode', {
 });
 
 const StyledButton = styled.button`
+  display: block;
   cursor: pointer;
   padding: ${basicStyles.gutter}px;
   background: none;
