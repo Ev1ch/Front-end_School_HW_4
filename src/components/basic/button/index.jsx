@@ -21,12 +21,34 @@ const StyledButton = styled.button`
   border: 1px solid ${color};
   color: ${color};
   border-radius: ${basicStyles.radius}px;
+  position: relative;
+  overflow: hidden;
   transition: ${basicStyles.time}s;
 
-  &:hover {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 0;
     background-color: ${color};
-    color: ${contrastColor};
+    transition: ${basicStyles.time}s;
   }
+
+  &:hover {
+    color: ${contrastColor};
+
+    &::before {
+      width: 100%;
+    }
+  }
+`;
+
+const StyledText = styled.span`
+  position: relative;
+  z-index: 2;
 `;
 
 const Button = ({ text, className, onClick }) => {
@@ -38,7 +60,7 @@ const Button = ({ text, className, onClick }) => {
 
   return (
     <StyledButton className={className} onClick={clickHandler}>
-      {text}
+      <StyledText>{text}</StyledText>
     </StyledButton>
   );
 };
