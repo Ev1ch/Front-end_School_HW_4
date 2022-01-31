@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
-import { Container } from 'components/basic';
+import { Button, Container } from 'components/basic';
 import { Bio, Header, Post } from 'components/common';
 import { basicStyles } from 'styles';
 
@@ -19,39 +19,38 @@ const StyledPost = styled(Post)`
   }
 `;
 
+const StyledButton = styled(Button)`
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+`;
+
 const Home = ({ onChangeTheme }) => {
-  const [posts] = useState([
-    {
-      id: Math.random(),
-      title: 'Title',
-      subtitle: 'Subtitle',
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, in minima saepe cum odit dolorum sunt nulla odio asperiores blanditiis eaque praesentium ratione, enim nobis quos doloribus sapiente rerum repellat.',
-    },
-    {
-      id: Math.random(),
-      title: 'Title',
-      subtitle: 'Subtitle',
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, in minima saepe cum odit dolorum sunt nulla odio asperiores blanditiis eaque praesentium ratione, enim nobis quos doloribus sapiente rerum repellat.',
-    },
-    {
-      id: Math.random(),
-      title: 'Title',
-      subtitle: 'Subtitle',
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, in minima saepe cum odit dolorum sunt nulla odio asperiores blanditiis eaque praesentium ratione, enim nobis quos doloribus sapiente rerum repellat.',
-    },
-    {
-      id: Math.random(),
-      title: 'Title',
-      subtitle: 'Subtitle',
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, in minima saepe cum odit dolorum sunt nulla odio asperiores blanditiis eaque praesentium ratione, enim nobis quos doloribus sapiente rerum repellat.',
-    },
-    {
-      id: Math.random(),
-      title: 'Title',
-      subtitle: 'Subtitle',
-      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, in minima saepe cum odit dolorum sunt nulla odio asperiores blanditiis eaque praesentium ratione, enim nobis quos doloribus sapiente rerum repellat.',
-    },
-  ]);
+  const options = useRef({
+    pageNumber: 0,
+    pageSize: 5,
+  });
+  const allPosts = useRef([]);
+  const [posts, setPosts] = useState([]);
+
+  const loadMoreHandler = () => {
+    options.current.pageNumber++;
+    setPosts(
+      allPosts.current.slice(
+        0,
+        options.current.pageNumber * options.current.pageSize,
+      ),
+    );
+  };
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.json())
+      .then((posts) => {
+        allPosts.current = posts;
+        loadMoreHandler();
+      });
+  }, []);
 
   return (
     <StyledMain>
@@ -61,6 +60,7 @@ const Home = ({ onChangeTheme }) => {
         {posts.map((post) => (
           <StyledPost post={post} key={post.id} />
         ))}
+        <StyledButton text="Load more" onClick={loadMoreHandler} />
       </StyledContainer>
     </StyledMain>
   );
