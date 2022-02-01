@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Button, Container } from 'components/basic';
 import { Bio, Header, Post } from 'components/common';
-import { basicStyles } from 'styles';
+import { basicStyles, breakpoints } from 'styles';
 
 const StyledMain = styled.main`
   min-height: 100vh;
@@ -11,6 +11,20 @@ const StyledMain = styled.main`
 const StyledContainer = styled(Container)`
   padding-top: ${basicStyles.gutter * 2}px;
   padding-bottom: ${basicStyles.gutter * 2}px;
+`;
+
+const StyledPosts = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: ${basicStyles.gutter * 2}px;
+
+  @media (max-width: ${breakpoints.md}px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: ${breakpoints.sm}px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledPost = styled(Post)`
@@ -57,9 +71,11 @@ const Home = ({ onChangeTheme }) => {
       <Header onChangeTheme={onChangeTheme} />
       <Bio />
       <StyledContainer>
-        {posts.map((post) => (
-          <StyledPost post={post} key={post.id} />
-        ))}
+        <StyledPosts>
+          {posts.map((post) => (
+            <StyledPost post={post} key={post.id} />
+          ))}
+        </StyledPosts>
         <StyledButton text="Load more" onClick={loadMoreHandler} />
       </StyledContainer>
     </StyledMain>
