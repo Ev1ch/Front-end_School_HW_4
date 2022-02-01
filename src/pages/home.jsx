@@ -47,7 +47,7 @@ const Home = ({ onChangeTheme }) => {
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then((response) => response.json())
       .then((posts) => {
-        allPosts.current = posts;
+        allPosts.current = posts.map((post) => ({ ...post, date: new Date() }));
         loadMoreHandler();
       });
   }, []);
