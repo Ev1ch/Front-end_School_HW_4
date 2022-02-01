@@ -42,7 +42,7 @@ const StyledButton = styled(Button)`
 const Home = ({ onChangeTheme }) => {
   const options = useRef({
     pageNumber: 0,
-    pageSize: 1,
+    pageSize: 3,
   });
   const allPosts = useRef([]);
   const [posts, setPosts] = useState([]);
