@@ -35,9 +35,13 @@ const months = [
   'December',
 ];
 
-const Datetime = ({ date: { month, day, year }, time: { hours, minutes } }) => {
+const Datetime = ({
+  date: { month, day, year },
+  time: { hours, minutes },
+  className,
+}) => {
   return (
-    <StyledDatetime>
+    <StyledDatetime className={className}>
       <span>
         <FontAwesomeIcon icon={faCalendar} /> {months[month - 1]}, {day}, {year}
       </span>
