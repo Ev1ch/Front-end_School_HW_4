@@ -1,6 +1,7 @@
 export { default as Avatar } from './avatar';
 export { default as Button } from './button';
 export { default as Container } from './container';
+export { default as Datetime } from './datetime';
 export { default as Logo } from './logo';
 export { default as Paragraph } from './paragraph';
 export { default as Subtitle } from './subtitle';
